@@ -1,14 +1,25 @@
 // components/Projects.jsx
 import { motion } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
 import iPhoneCloneImg from "../assets/projects/iphone-clone.png";
-import SocialNetworkImg from "../assets/projects/social-network.png";
+import MockinterviewImg from "../assets/projects/mockinterview.png";
 import PortfolioImg from "../assets/projects/portfolio.png";
-import WineClassificationImg from "../assets/projects/wine-classification.png";
+import SocialNetworkImg from "../assets/projects/social-network.png";
 import UEFADashboardImg from "../assets/projects/uefa-dashboard.png";
+import WineClassificationImg from "../assets/projects/wine-classification.png";
 
 const projects = [
+  {
+    title: "AI Mock Interviewer",
+    description:
+      "AIPrepView is an AI-powered interview preparation platform that helps users practice technical and behavioral interview questions with a virtual AI interviewer.",
+    tags: ["NextJS", "Typescript", "Firebase", "Tailwind"],
+    github: "https://github.com/sahilsingh12221802/Mock-Interviewer",
+    demo: "https://mock-interviewer-alpha.vercel.app//",
+    image: MockinterviewImg,
+    date: "March 2025",
+  },
   {
     title: "iPhone 15 Pro Clone",
     description:
@@ -17,6 +28,7 @@ const projects = [
     github: "https://github.com/sahilsingh12221802/iPhone15Pro-Clone",
     demo: "https://iphone15pro-pi.vercel.app/",
     image: iPhoneCloneImg,
+    date: "March 2024",
   },
   {
     title: "Social Network Analysis",
@@ -27,6 +39,7 @@ const projects = [
       "https://github.com/sahilsingh12221802/Social-Network-Analysis-Using-R-Programming",
     demo: null,
     image: SocialNetworkImg,
+    date: "April 2024",
   },
   {
     title: "Personal Portfolio",
@@ -36,6 +49,7 @@ const projects = [
     github: "https://github.com/sahilsingh12221802/Portfolio",
     demo: "https://sahil-portfolio-jet.vercel.app/",
     image: PortfolioImg,
+    date: "June 2024",
   },
   {
     title: "Wine Classification",
@@ -46,6 +60,7 @@ const projects = [
       "https://github.com/sahilsingh12221802/Wine-Classification-and-Model-Comparison",
     demo: null,
     image: WineClassificationImg,
+    date: "February 2024",
   },
   {
     title: "UEFA Dashboard",
@@ -55,6 +70,7 @@ const projects = [
     github: "https://github.com/sahilsingh12221802/UEFA-Dashboard-Tableau",
     demo: null,
     image: UEFADashboardImg,
+    date: "January 2024",
   },
 ];
 
@@ -89,15 +105,19 @@ const Projects = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -5 }}
-              className="bg-gray-900/80 border border-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all h-full flex flex-col"
+              className="bg-gray-900/80 border border-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all h-full flex flex-col group"
             >
-              {/* Project Image Placeholder - Replace with actual screenshots */}
-              <div className="h-48 overflow-hidden">
+              {/* Project Image */}
+              <div className="h-48 overflow-hidden relative">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
+                <div className="absolute bottom-0 left-0 bg-gradient-to-t from-black/80 to-transparent w-full h-1/3" />
+                <span className="absolute bottom-3 left-4 text-sm text-gray-300">
+                  {project.date}
+                </span>
               </div>
 
               <div className="p-6 flex-1 flex flex-col">
@@ -120,23 +140,27 @@ const Projects = () => {
 
                 {/* Links */}
                 <div className="mt-auto flex space-x-4">
-                  <a
+                  <motion.a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center text-sm bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-colors"
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     <FaGithub className="mr-2" /> Code
-                  </a>
+                  </motion.a>
                   {project.demo && (
-                    <a
+                    <motion.a
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center text-sm bg-blue-500/20 hover:bg-blue-500/30 px-4 py-2 rounded-lg transition-colors"
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.95 }}
                     >
                       <FaExternalLinkAlt className="mr-2" /> Live Demo
-                    </a>
+                    </motion.a>
                   )}
                 </div>
               </div>
